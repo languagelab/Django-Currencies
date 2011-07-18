@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.exceptions import DoesNotExist
 from django.utils.translation import gettext_lazy as _
 
 
@@ -25,7 +24,7 @@ class Currency(models.Model):
 		if self.is_default:
 			try:
 				default_currency = Currency.objects.get(is_default=True)
-			except DoesNotExist:
+			except Currency.DoesNotExist:
 				pass
 			else:
 				default_currency.is_default = False
